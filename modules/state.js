@@ -15,11 +15,16 @@ export const state={
     didAte:true,
     apples: {}
   },
-  level: 4,
+  level: 1,
   maps:{
     "map1":maps.map1,
     "map2":maps.map2,
     "map3":maps.map3,
     "map4":maps.map4,
-  }
+  },
+  score:0,
+  nextLevel:false,
+  win: false,
+  gameStart: false,
+  gameOver: false
 }

@@ -1,4 +1,4 @@
-import { rows } from "./settings.js";
+import { amountLevels, rows } from "./settings.js";
 import { state } from "./state.js";
 import mapKeyCode from "./utils/mapKeyCode.js"
 
@@ -28,6 +28,10 @@ const moveSnake = () =>{
     newMovementSnake= {x: headSnake.x, y: headSnake.y+1, d: direction, h: true}
   }
   if(_checkCollisionSnake(newMovementSnake)){
+    state.gameStart=false;
+    state.nextLevel=false;
+    state.win=false;
+    state.gameOver=true;
     return true;
   }
 
@@ -80,8 +84,9 @@ const _checkGrowth=()=>{
     state.food.didAte=true;
     state.snake.tail.unshift(state.snake.lastPosTail);
     if(state.snake.speed>60){
-      state.snake.speed-=1;
+      state.snake.speed-=10;
     }
+    state.score = state.score+1;
   }
 }
 
@@ -105,6 +110,53 @@ const _checkCollisionSnake=(headSnake)=>{
 
 const _getHeadSnake=(snake)=>{
   return snake.tail[snake.tail.length-1];
+}
+
+export const checkNextLevel=()=>{
+  const{score, maps, level}=state;
+  const map = maps[`map${level}`];
+
+  if(score >= map.complete && level<amountLevels){
+    state.snake ={
+      tail: [
+        {x:1, y:1, d:"right", h: false},
+        {x:2, y:1, d:"right", h: false},
+        {x:3, y:1, d:"right", h: false},
+        {x:4, y:1, d:"right", h: true},
+      ],
+      direction: "right",
+      lastPosTail:{},
+      speed:200
+     };
+     state.food={
+      didAte:true,
+      apples: {}
+     }
+     state.score=0;
+     state.gameStart=false;
+     state.win=false;
+     state.gameOver = false;
+
+     state.nextLevel=true;
+     state.level = state.level+1;
+
+     return true;
+   }
+}
+
+export const checkWin = () =>{
+  const{score, maps, level} = state;
+  const map = maps[`map${level}`];
+
+  if(score >= map.complete && level>=amountLevels){
+    state.gameStart = false;
+    state.gameOver = false;
+    state.nextLevel= false;
+
+    state.win = true;
+
+    return true;
+  }
 }
 
 export {changeDirection,moveSnake};

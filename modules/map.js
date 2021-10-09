@@ -1,7 +1,7 @@
 const maps={
   "map1":{
     cords:[],
-    complete:400
+    complete:5
   },
   "map2":{
     cords:[
@@ -27,7 +27,7 @@ const maps={
       { x:10,y:19},
       { x:10,y:20}
     ],
-    complete:400
+    complete:5
   },
   "map3":{
     cords:[
@@ -75,7 +75,7 @@ const maps={
       { x:19,y:9},
       { x:20,y:9}
     ],
-    complete:400
+    complete:5
   },
   "map4":{
     cords:[
@@ -95,23 +95,23 @@ const maps={
       { x:15,y:6},
       { x:15,y:7},
 
+      { x:15,y:11},
       { x:15,y:12},
       { x:15,y:13},
       { x:15,y:14},
-      { x:15,y:15},
-      { x:14,y:15},
-      { x:13,y:15},
-      { x:12,y:15},
+      { x:14,y:14},
+      { x:13,y:14},
+      { x:12,y:14},
 
+      { x:4,y:11},
       { x:4,y:12},
       { x:4,y:13},
       { x:4,y:14},
-      { x:4,y:15},
-      { x:5,y:15},
-      { x:6,y:15},
-      { x:7,y:15},
+      { x:5,y:14},
+      { x:6,y:14},
+      { x:7,y:14},
     ],
-    complete:400
+    complete:5
   }
 }
 export default maps;
